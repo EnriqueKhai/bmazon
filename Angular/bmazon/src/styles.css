@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: black;
+
+    background-image: url("assets/images/Zen.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
