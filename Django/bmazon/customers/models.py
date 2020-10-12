@@ -19,7 +19,7 @@ class CustomerBase(models.Model):
 
 class Customer(CustomerBase):
     def __str__(self):
-        return self.customer_id
+        return 'Customer: {}'.format(self.customer_id)
     
     class Meta:
         app_label = 'customers'

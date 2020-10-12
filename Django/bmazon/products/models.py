@@ -62,7 +62,7 @@ class Product(ProductBase):
         app_label = 'products'
 
     def __str__(self):
-        return self.product_id
+        return 'Product: {}'.format(self.prod_name)
 
 
 class StockBase(models.Model):
