@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'storages',
+    'django_countries',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

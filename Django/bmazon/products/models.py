@@ -1,11 +1,12 @@
 from django.db import models
+from django_countries.fields import CountryField
 
 # Create your models here.
 class SupplierBase(models.Model):
     supplier_id = models.IntegerField(primary_key=True)
     company_name = models.CharField(max_length=255)
-    country = models.CharField(max_length=45)
-    email = models.CharField(max_length=255,null=True,blank=True)
+    country = CountryField(default='SG')
+    email = models.EmailField(max_length=255,null=True,blank=True)
 
     class Meta:
         abstract = True
@@ -62,7 +63,7 @@ class Product(ProductBase):
         app_label = 'products'
 
     def __str__(self):
-        return 'Product: {}'.format(self.prod_name)
+        return self.prod_name
 
 
 class StockBase(models.Model):
