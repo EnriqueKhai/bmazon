@@ -3,7 +3,7 @@ from django_countries.fields import CountryField
 
 # Create your models here.
 class CustomerBase(models.Model):
-    customer_id = models.IntegerField(primary_key=True)
+    customer_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)

@@ -4,7 +4,7 @@ from products.models import Product
 
 # Create your models here.
 class OrderBase(models.Model):
-    order_id = models.IntegerField(primary_key=True)
+    order_id = models.AutoField(primary_key=True)
     order_date = models.DateTimeField(auto_now_add=True, blank=True)
     order_discount = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     estimated_delivery = models.DateTimeField(blank=True, null=True)
@@ -27,7 +27,7 @@ class Order(OrderBase):
 
 
 class CurrencyConversion(models.Model):
-    conversion_id = models.IntegerField(primary_key=True)
+    conversion_id = models.AutoField(primary_key=True)
     from_curr = models.CharField(max_length=45)
     to_curr = models.CharField(max_length=45)
     rate = models.DecimalField(max_digits=7, decimal_places=3)

@@ -1,0 +1,357 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$U6GGUbekCicu$ktiRl+7z+FBkFu+p4dp/+OXfM4X1FpNO0+bVhTVnoik=",
+        "last_login": "2020-10-20T16:02:23Z",
+        "is_superuser": true,
+        "username": "tammy",
+        "first_name": "Tammy",
+        "last_name": "Tsang",
+        "email": "tammytsang18@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2020-10-20T16:02:10Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "add_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "change_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "delete_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "view_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "add_group",
+                "auth",
+                "group"
+            ],
+            [
+                "change_group",
+                "auth",
+                "group"
+            ],
+            [
+                "delete_group",
+                "auth",
+                "group"
+            ],
+            [
+                "view_group",
+                "auth",
+                "group"
+            ],
+            [
+                "add_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "change_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "delete_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "view_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "add_user",
+                "auth",
+                "user"
+            ],
+            [
+                "change_user",
+                "auth",
+                "user"
+            ],
+            [
+                "delete_user",
+                "auth",
+                "user"
+            ],
+            [
+                "view_user",
+                "auth",
+                "user"
+            ],
+            [
+                "add_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "change_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "delete_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "view_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "add_customer",
+                "customers",
+                "customer"
+            ],
+            [
+                "change_customer",
+                "customers",
+                "customer"
+            ],
+            [
+                "delete_customer",
+                "customers",
+                "customer"
+            ],
+            [
+                "view_customer",
+                "customers",
+                "customer"
+            ],
+            [
+                "add_currencyconversion",
+                "orders",
+                "currencyconversion"
+            ],
+            [
+                "change_currencyconversion",
+                "orders",
+                "currencyconversion"
+            ],
+            [
+                "delete_currencyconversion",
+                "orders",
+                "currencyconversion"
+            ],
+            [
+                "view_currencyconversion",
+                "orders",
+                "currencyconversion"
+            ],
+            [
+                "add_order",
+                "orders",
+                "order"
+            ],
+            [
+                "change_order",
+                "orders",
+                "order"
+            ],
+            [
+                "delete_order",
+                "orders",
+                "order"
+            ],
+            [
+                "view_order",
+                "orders",
+                "order"
+            ],
+            [
+                "add_category",
+                "products",
+                "category"
+            ],
+            [
+                "change_category",
+                "products",
+                "category"
+            ],
+            [
+                "delete_category",
+                "products",
+                "category"
+            ],
+            [
+                "view_category",
+                "products",
+                "category"
+            ],
+            [
+                "add_product",
+                "products",
+                "product"
+            ],
+            [
+                "change_product",
+                "products",
+                "product"
+            ],
+            [
+                "delete_product",
+                "products",
+                "product"
+            ],
+            [
+                "view_product",
+                "products",
+                "product"
+            ],
+            [
+                "add_stock",
+                "products",
+                "stock"
+            ],
+            [
+                "change_stock",
+                "products",
+                "stock"
+            ],
+            [
+                "delete_stock",
+                "products",
+                "stock"
+            ],
+            [
+                "view_stock",
+                "products",
+                "stock"
+            ],
+            [
+                "add_supplier",
+                "products",
+                "supplier"
+            ],
+            [
+                "change_supplier",
+                "products",
+                "supplier"
+            ],
+            [
+                "delete_supplier",
+                "products",
+                "supplier"
+            ],
+            [
+                "view_supplier",
+                "products",
+                "supplier"
+            ],
+            [
+                "add_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "change_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "delete_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "view_session",
+                "sessions",
+                "session"
+            ]
+        ]
+    }
+},
+{
+    "model": "products.supplier",
+    "pk": 1,
+    "fields": {
+        "company_name": "Cool Watches Pte Ltd",
+        "country": "SG",
+        "email": "coolwatches@gmail.com"
+    }
+},
+{
+    "model": "products.supplier",
+    "pk": 2,
+    "fields": {
+        "company_name": "Stylish Pen Pte Ltd",
+        "country": "SG",
+        "email": "stylishpens@gmail.com"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+        "cat_name": "Watches",
+        "cat_desc": null
+    }
+},
+{
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+        "cat_name": "Stationary",
+        "cat_desc": null
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "prod_name": "Stylish Watch",
+        "prod_desc": "Very nice watch",
+        "price": "20.00",
+        "prod_discount": null,
+        "prod_image": "Instrmnt_raeburn.jpg",
+        "supplier": 1,
+        "category": 1
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "prod_name": "Cool pen",
+        "prod_desc": null,
+        "price": "10.00",
+        "prod_discount": null,
+        "prod_image": "hero-610-metal-brushed-case-fountain-pen.jpg",
+        "supplier": 2,
+        "category": 2
+    }
+},
+{
+    "model": "products.stock",
+    "pk": 1,
+    "fields": {
+        "quantity_in_stock": 20,
+        "product": 1
+    }
+},
+{
+    "model": "products.stock",
+    "pk": 2,
+    "fields": {
+        "quantity_in_stock": 50,
+        "product": 2
+    }
+}
+]

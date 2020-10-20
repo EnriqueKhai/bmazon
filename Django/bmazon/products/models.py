@@ -3,7 +3,7 @@ from django_countries.fields import CountryField
 
 # Create your models here.
 class SupplierBase(models.Model):
-    supplier_id = models.IntegerField(primary_key=True)
+    supplier_id = models.AutoField(primary_key=True)
     company_name = models.CharField(max_length=255)
     country = CountryField(default='SG')
     email = models.EmailField(max_length=255,null=True,blank=True)
@@ -23,7 +23,7 @@ class Supplier(SupplierBase):
 
 
 class CategoryBase(models.Model):
-    cat_id = models.IntegerField(primary_key=True)
+    cat_id = models.AutoField(primary_key=True)
     cat_name = models.CharField(max_length=255)
     cat_desc = models.CharField(max_length=500, null=True, blank=True)
 
@@ -42,7 +42,7 @@ class Category(CategoryBase):
 
 
 class ProductBase(models.Model):
-    product_id = models.IntegerField(primary_key=True)
+    product_id = models.AutoField(primary_key=True)
     prod_name = models.CharField(max_length=255)
     prod_desc = models.CharField(max_length=500, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
@@ -67,7 +67,7 @@ class Product(ProductBase):
 
 
 class StockBase(models.Model):
-    stock_id = models.IntegerField(primary_key=True)
+    stock_id = models.AutoField(primary_key=True)
     quantity_in_stock = models.PositiveIntegerField(default=0)
 
     class Meta:
