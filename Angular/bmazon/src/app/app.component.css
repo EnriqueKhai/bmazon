@@ -1,36 +1,4 @@
-.site-nav .navbar-nav {
-    position: absolute;
-    right: 4em;
-    top: 2.3em;
-}
-
-.site-nav .navbar-nav .nav-item.nav-link {
-    position: relative;
-
-    font-size: 1.3rem;
-    font-weight: 300;
-
-    padding-bottom: 2px;
-    padding-left: 0.4em;
-    padding-right: 0.4em;
-}
-
-.site-nav .navbar-nav .nav-item.nav-link::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    max-width: 1000px;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    background-color: darkorange;
-    visibility: hidden;
-}
-
-.site-nav .navbar-nav .nav-item.nav-link:hover {
-    font-weight: 600;
-}
-
-.site-nav .navbar-nav .nav-item.nav-link:hover::before {
-    visibility: visible;
+nav {
+    display: flex;
+    justify-content: flex-end;
 }
