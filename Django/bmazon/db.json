@@ -279,6 +279,24 @@
     }
 },
 {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$R95vwoa6slC3$HKzAdsZsBHxpTI9f6Y1G9iGQZDbeNQqIszG1kQGH6Bg=",
+        "last_login": "2020-10-25T09:42:24.035Z",
+        "is_superuser": true,
+        "username": "giraffe6",
+        "first_name": "",
+        "last_name": "",
+        "email": "nigel.tan@u.nus.edu",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2020-10-25T09:42:15.080Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
     "model": "products.supplier",
     "pk": 1,
     "fields": {
