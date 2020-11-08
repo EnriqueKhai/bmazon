@@ -21,6 +21,11 @@ from products import views
 
 urlpatterns = [
     path('products/', views.ProductList.as_view()),
-    path('products/<int:pk>/', views.ProductDetail.as_view()),
+    path('products/<int:pk>', views.ProductDetail.as_view()),
+    path('categories/', views.CategoryList.as_view()),
+    path('categories/<int:pk>', views.CategoryDetail.as_view()),
+    path('suppliers/', views.SupplierList.as_view()),
+    path('suppliers/<int:pk>', views.SupplierDetail.as_view()),
+    path('stocks/<int:pk>', views.StockDetail.as_view()),
     path('admin/', admin.site.urls),
 ]

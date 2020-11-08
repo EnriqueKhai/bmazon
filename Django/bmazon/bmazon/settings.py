@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'storages',
     'django_countries',
     'rest_framework',
+    'django_filters',
     'corsheaders',
 ]
 
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -149,3 +151,5 @@ AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'bmazon.storage_backends.MediaStorage'
+
+CORS_ORIGIN_ALLOW_ALL = True
