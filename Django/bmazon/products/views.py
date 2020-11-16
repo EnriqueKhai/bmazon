@@ -1,3 +1,4 @@
+import django_filters
 from django.shortcuts import render
 from .models import Product, Category, Supplier, Stock
 from .serializer import (
@@ -6,25 +7,49 @@ from .serializer import (
     SupplierSerializer,
     StockSerializer
 )
-from django.http import Http404
-
+from rest_framework.exceptions import ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.filters import SearchFilter
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework import status
 
 
+class ProductFilter(django_filters.FilterSet):
+    min_price = django_filters.NumberFilter(name="price", lookup_type='gte')
+    max_price = django_filters.NumberFilter(name="price", lookup_type='lte')
+
+    class Meta:
+        model = Product
+        fields = ['prod_name', 'price']
+
+
 # Create your views here.
-class ProductList(APIView):
-    filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('prod_name',)
+class ProductsPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
 
-    def get(self, request, format=None):
-        products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
 
-    def post(self,  request):
+class ProductList(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_fields = ('product_id', )
+    search_fields = ('prod_name', 'prod_desc')
+    pagination_class = ProductsPagination
+
+
+class ProductCreate(CreateAPIView):
+    serializer_class = ProductSerializer
+
+    def create(self, request, *args, **kwargs):
+        try:
+            price = request.data.get('price')
+            if price is not None and float(price) <= 0.0:
+                raise ValidationError({'price': 'Must be above $0.00'})
+        except ValueError:
+            raise ValidationError({'price': 'A valid number is required'})
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(category_id=request.data['category'],
@@ -33,129 +58,42 @@ class ProductList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ProductDetail(APIView):
+class ProductRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    lookup_field = 'product_id'
+    serializer_class = ProductSerializer
 
-    def get_object(self, pk):
-        try:
-            return Product.objects.get(pk=pk)
-        except Product.DoesNotExist:
-            raise Http404
+    def delete(self, request, *args, **kwargs):
+        product_id = request.data.get('product_id')
+        response = super().delete(request, *args, **kwargs)
+        if response.status_code == 204:
+            from django.core.cache import cache
+            cache.delete('product_data_{}'.format(product_id))
+        return response
 
-    def get(self, request, pk, format=None):
-        product = self.get_object(pk)
-        serializer = ProductSerializer(product)
-        return Response(serializer.data)
-
-    def patch(self, request, pk, format=None):
-        product = self.get_object(pk)
-        serializer = ProductSerializer(product, data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-        product = self.get_object(pk)
-        product.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class CategoryList(APIView):
-    def get(self, request, format=None):
-        categories = Category.objects.all()
-        serializer = CategorySerializer(categories, many=True)
-        return Response(serializer.data)
-
-    def post(self,  request):
-        serializer = CategorySerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        if response.status_code == 200:
+            from django.core.cache import cache
+            product = response.data
+            cache.set('product_data_{}'.format(product['product_id']), {
+                'prod_name': product['prod_name'],
+                'prod_desc': product['prod_desc'],
+                'price': product['price'],
+                'prod_discount': product['prod_discount'],
+            })
+        return response
 
 
-class CategoryDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Category.objects.get(pk=pk)
-        except Category.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        category = self.get_object(pk)
-        serializer = CategorySerializer(category)
-        return Response(serializer.data)
-
-    def patch(self, request, pk, format=None):
-        category = self.get_object(pk)
-        serializer = CategorySerializer(category, data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-        category = self.get_object(pk)
-        category.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class CategoryPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
 
 
-class SupplierList(APIView):
-    def get(self, request, format=None):
-        suppliers = Supplier.objects.all()
-        serializer = SupplierSerializer(suppliers, many=True)
-        return Response(serializer.data)
-
-    def post(self,  request):
-        serializer = SupplierSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class SupplierDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Supplier.objects.get(pk=pk)
-        except Supplier.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        supplier = self.get_object(pk)
-        serializer = SupplierSerializer(supplier)
-        return Response(serializer.data)
-
-    def patch(self, request, pk, format=None):
-        supplier = self.get_object(pk)
-        serializer = SupplierSerializer(supplier, data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-        supplier = self.get_object(pk)
-        supplier.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class StockDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Stock.objects.get(pk=pk)
-        except Stock.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        stock = self.get_object(pk)
-        serializer = StockSerializer(stock)
-        return Response(serializer.data)
-
-    def patch(self, request, pk, format=None):
-        stock = self.get_object(pk)
-        serializer = StockSerializer(stock, data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer, status=status.HTTP_400_BAD_REQUEST)
+class CategoryList(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_fields = ('cat_id', )
+    search_fields = ('cat_name', 'cat_desc')
+    pagination_class = ProductsPagination
