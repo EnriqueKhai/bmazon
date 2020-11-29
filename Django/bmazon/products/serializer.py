@@ -7,6 +7,7 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = [
+            'cat_id',
             'cat_name',
             'cat_desc'
         ]
@@ -16,6 +17,7 @@ class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
         fields = [
+            'supplier_id',
             'company_name',
             'country',
             'email'
@@ -32,10 +34,6 @@ class ProductSerializer(serializers.ModelSerializer):
         read_only=True
     )
     prod_image = serializers.FileField(required=False)
-    price = serializers.DecimalField(
-        min_value=1.00, max_value=100000,
-        max_digits=2, decimal_places=2,
-    )
 
     class Meta:
         model = Product
