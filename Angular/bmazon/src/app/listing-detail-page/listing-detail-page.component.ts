@@ -9,17 +9,16 @@ import { ProductService } from '../services/product/product.service';
   styleUrls: ['./listing-detail-page.component.css']
 })
 export class ListingDetailPageComponent implements OnInit {
-  listing: Product;
+  listing = {} as Product;
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private product_service: ProductService,
   ) { }
 
   ngOnInit(): void {
     let listing_id = this.route.snapshot.paramMap.get('listing_id');
-    this.productService.getProduct(listing_id)
-        .subscribe(product => this.listing = product);
+    this.product_service.get_listing_by_ID(listing_id)
+        .subscribe(listing => this.listing = listing["results"][0]);
   }
-
 }

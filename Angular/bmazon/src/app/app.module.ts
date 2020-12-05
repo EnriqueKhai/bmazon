@@ -12,6 +12,7 @@ import { MyListingsPageComponent } from './my-listings-page/my-listings-page.com
 import { CreateListingPageComponent } from './create-listing-page/create-listing-page.component';
 import { EditListingPageComponent } from './edit-listing-page/edit-listing-page.component';
 import { ProductService } from './services/product/product.service';
+import { ListingDataFormComponent } from './listing-data-form/listing-data-form.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProductService } from './services/product/product.service';
     MyListingsPageComponent,
     CreateListingPageComponent,
     EditListingPageComponent,
+    ListingDataFormComponent,
   ],
   imports: [
     BrowserModule,

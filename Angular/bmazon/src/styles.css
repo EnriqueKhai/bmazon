@@ -5,3 +5,7 @@
     --theme-text: #1d3557;
     --theme-background: #f6f0ea;
 }
+
+body {
+    background-color: var(--theme-background);
+}

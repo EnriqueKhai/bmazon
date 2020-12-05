@@ -1,10 +1,6 @@
-<div *ngFor="let listing of listings">
-    <p>id = {{ listing.product_id }}</p>
-    <p>name = {{ listing.prod_name }}</p>
-    <p>description = {{ listing.prod_desc }}</p>
-    <p>price = {{ listing.price }}</p>
-    <p>discount = {{ listing.prod_discount }}</p>
-    <p>image url = {{ listing.prod_image }}</p>
-    <p>supplier id = {{ listing.supplier }}</p>
-    <p>category id = {{ listing.category }}</p>
+<h1>
+    All Listings Page!
+</h1>
+<div *ngFor="let listing of all_listings">
+    <p>{{ listing.product_id }}. <a [routerLink]="['/listings/', listing.product_id]" routerLinkActive="router-link-active" >{{ listing.prod_name }}</a> ({{ listing.price }})</p>
 </div>

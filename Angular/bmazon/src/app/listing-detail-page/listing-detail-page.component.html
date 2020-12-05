@@ -2,12 +2,12 @@
     Listing Detail Page!
 </h1>
 <div>
-    <p>id = {{ listing.product_id }}</p>
-    <p>name = {{ listing.prod_name }}</p>
-    <p>description = {{ listing.prod_desc }}</p>
-    <p>price = {{ listing.price }}</p>
-    <p>discount = {{ listing.prod_discount }}</p>
-    <p>image url = {{ listing.prod_image }}</p>
-    <p>supplier id = {{ listing.supplier }}</p>
-    <p>category id = {{ listing.category }}</p>
+    <p>ID = {{ listing.product_id }}</p>
+    <p>Name = <a [routerLink]="['/edit-listing/', listing.product_id]" routerLinkActive="router-link-active" >{{ listing.prod_name }}</a></p>
+    <p>Description = {{ listing.prod_desc }}</p>
+    <p>Price = {{ listing.price }}</p>
+    <p>Discount = {{ listing.prod_discount }}</p>
+    <p>Image URL = {{ listing.prod_image }}</p>
+    <p>Supplier ID = {{ listing.supplier }}</p>
+    <p>Category ID = {{ listing.category }}</p>
 </div>

@@ -1,1 +1,9 @@
-<p>create-listing-page works!</p>
+<h1>
+    Create Listing Page!
+</h1>
+<app-listing-data-form
+    button_text="Create Listing"
+    (on_submit)="onSubmit($event)"
+></app-listing-data-form>
+
+<!-- The (onSubmit)="..." must correspond to the name of the @Output() variable. -->

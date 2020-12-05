@@ -1,1 +1,8 @@
-<p>edit-listing-page works! Listing ID = {{ listing_id }}</p>
+<h1>
+    Edit Listing Page!
+</h1>
+<app-listing-data-form *ngIf="listing_is_loaded"
+    [listing]="listing"
+    button_text="Save"
+    (on_submit)="onSubmit($event)"
+></app-listing-data-form>

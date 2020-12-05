@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-listings-page.component.css']
 })
 export class MyListingsPageComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

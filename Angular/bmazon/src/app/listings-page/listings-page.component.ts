@@ -8,15 +8,14 @@ import { ProductService } from '../services/product/product.service';
   styleUrls: ['./listings-page.component.css']
 })
 export class ListingsPageComponent implements OnInit {
-  listings: Product[];
+  all_listings = [] as Product[];
 
   constructor(
-    private productService: ProductService
+    private product_service: ProductService
   ) { }
 
   ngOnInit(): void {
-    this.productService.getProducts()
-        .subscribe(products => this.listings = products["results"]);
+    this.product_service.get_all_listings()
+        .subscribe(all_listings => this.all_listings = all_listings["results"]);
   }
-
 }
