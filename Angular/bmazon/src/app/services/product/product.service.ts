@@ -15,6 +15,7 @@ const GET_LISTING_DETAIL_URL: string  = "http://localhost:8000/api/products/?pro
 const GET_ALL_LISTINGS_URL: string    = "http://localhost:8000/api/products/";
 const CREATE_NEW_LISTING_URL: string  = "http://localhost:8000/api/products/new";
 const EDIT_LISTING_DETAIL_URL: string = "http://localhost:8000/api/products/";
+const DELETE_LISTING_URL: string      = "http://localhost:8000/api/products/";
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,9 @@ export class ProductService {
       this.product_to_JSON(edited_listing),
       HTTP_OPTIONS
     );
+  }
+
+  delete_listing(listing_id: string): Observable<void> {
+    return this.http.delete<void>(DELETE_LISTING_URL + listing_id);
   }
 }

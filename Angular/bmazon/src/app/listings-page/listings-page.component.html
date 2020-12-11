@@ -2,5 +2,12 @@
     All Listings Page!
 </h1>
 <div *ngFor="let listing of all_listings">
-    <p>{{ listing.product_id }}. <a [routerLink]="['/listings/', listing.product_id]" routerLinkActive="router-link-active" >{{ listing.prod_name }}</a> ({{ listing.price }})</p>
+    <p>
+        {{ listing.product_id }}.
+        <a [routerLink]="['/listings/', listing.product_id]" routerLinkActive="router-link-active" >
+            {{ listing.prod_name }}
+        </a>
+        ({{ listing.price }})
+        <button (click)="delete_listing(listing.product_id)">Delete</button>
+    </p>
 </div>
