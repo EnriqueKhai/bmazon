@@ -31,6 +31,6 @@ export class EditListingPageComponent implements OnInit {
 
   onSubmit(edited_listing: Product): void {
     this.product_service.edit_listing(edited_listing)
-      .subscribe(() => this.router.navigateByUrl("/listings"));
+      .subscribe(() => this.router.navigateByUrl("/listings/" + this.listing.product_id));
   }
 }
