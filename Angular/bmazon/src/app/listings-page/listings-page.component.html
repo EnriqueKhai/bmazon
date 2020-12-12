@@ -1,13 +1,13 @@
 <h1>
     All Listings Page!
 </h1>
-<div *ngFor="let listing of all_listings">
-    <p>
+<div data-cy="all-listings-container">
+    <p data-cy="listing-container" *ngFor="let listing of all_listings">
         {{ listing.product_id }}.
-        <a [routerLink]="['/listings/', listing.product_id]" routerLinkActive="router-link-active" >
+        <a data-cy="listing-detail-link" [routerLink]="['/listings/', listing.product_id]" routerLinkActive="router-link-active" >
             {{ listing.prod_name }}
         </a>
         ({{ listing.price }})
-        <button (click)="delete_listing(listing.product_id)">Delete</button>
+        <button data-cy="delete-listing-button" (click)="delete_listing(listing.product_id)">Delete</button>
     </p>
 </div>

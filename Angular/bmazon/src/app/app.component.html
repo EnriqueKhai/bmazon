@@ -1,8 +1,8 @@
 <header>
     <nav>
-        <a [routerLink]="['/my-listings']" routerLinkActive="router-link-active" >My Listings</a>
-        <a [routerLink]="['/listings']" routerLinkActive="router-link-active" >Listings</a>
-        <a [routerLink]="['/create-listing']" routerLinkActive="router-link-active" >Create New Listing</a>
+        <a data-cy="all-listings-navlink" [routerLink]="['/listings']" routerLinkActive="router-link-active" >All Listings</a>
+        <a data-cy="my-listings-navlink" [routerLink]="['/my-listings']" routerLinkActive="router-link-active" >My Listings</a>
+        <a data-cy="create-new-listing-navlink" [routerLink]="['/create-listing']" routerLinkActive="router-link-active" >Create New Listing</a>
     </nav>
 </header>
 

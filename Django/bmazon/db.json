@@ -283,7 +283,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$216000$R95vwoa6slC3$HKzAdsZsBHxpTI9f6Y1G9iGQZDbeNQqIszG1kQGH6Bg=",
-        "last_login": "2020-10-25T09:42:24.035Z",
+        "last_login": "2020-11-16T09:14:38.295Z",
         "is_superuser": true,
         "username": "giraffe6",
         "first_name": "",
@@ -334,26 +334,65 @@
     "model": "products.product",
     "pk": 1,
     "fields": {
-        "prod_name": "Stylish Watch",
+        "prod_name": "Very Stylish Watch!",
         "prod_desc": "Very nice watch",
-        "price": "20.00",
+        "price": "25.00",
         "prod_discount": null,
         "prod_image": "Instrmnt_raeburn.jpg",
-        "supplier": 1,
-        "category": 1
+        "supplier": 2,
+        "category": 2
     }
 },
 {
     "model": "products.product",
     "pk": 2,
     "fields": {
-        "prod_name": "Cool pen",
-        "prod_desc": null,
+        "prod_name": "Shiny pen",
+        "prod_desc": "Extremely Muji-esque, not for the casual joe.",
         "price": "10.00",
         "prod_discount": null,
         "prod_image": "hero-610-metal-brushed-case-fountain-pen.jpg",
         "supplier": 2,
         "category": 2
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "prod_name": "Pork Chop Curry Rice",
+        "prod_desc": "From Hainan.",
+        "price": "6.00",
+        "prod_discount": "1.00",
+        "prod_image": "",
+        "supplier": 1,
+        "category": 1
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "prod_name": "Tasty Chicken Wings & Fries",
+        "prod_desc": "Very tasty! Yummm :P",
+        "price": "15.00",
+        "prod_discount": "7.50",
+        "prod_image": "",
+        "supplier": 2,
+        "category": 2
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "prod_name": "Fancy Fan",
+        "prod_desc": "Cooling stuff! Not currently on offer though...",
+        "price": "11.00",
+        "prod_discount": "1.00",
+        "prod_image": "",
+        "supplier": 1,
+        "category": 1
     }
 },
 {

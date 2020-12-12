@@ -3,57 +3,57 @@
         <label for="product_id">
             ID:
         </label>
-        <input id="product_id" name="product_id" type="text" [ngModel]="listing.product_id" disabled>
+        <input data-cy="listing-id-input" id="product_id" name="product_id" type="text" [ngModel]="listing.product_id" disabled>
     </div>
 
     <div>
         <label for="product_name">
             Name:
         </label>
-        <input id="product_name" name="product_name" type="text" [(ngModel)]="listing.prod_name">
+        <input data-cy="listing-name-input" id="product_name" name="product_name" type="text" [(ngModel)]="listing.prod_name">
     </div>
 
     <div>
         <label for="product_description">
             Description:
         </label>
-        <input id="product_description" name="product_description" type="text" [(ngModel)]="listing.prod_desc">
+        <input data-cy="listing-description-input" id="product_description" name="product_description" type="text" [(ngModel)]="listing.prod_desc">
     </div>
 
     <div>
         <label for="price">
             Price:
         </label>
-        <input id="price" name="price" type="number" [(ngModel)]="listing.price">
+        <input data-cy="listing-price-input" id="price" name="price" type="number" [(ngModel)]="listing.price">
     </div>
 
     <div>
         <label for="image_url">
             Image URL:
         </label>
-        <input id="image_url" name="image_url" type="text" [(ngModel)]="listing.prod_image">
+        <input data-cy="listing-image-url-input" id="image_url" name="image_url" type="text" [(ngModel)]="listing.prod_image">
     </div>
 
     <div>
         <label for="product_discount">
             Discount:
         </label>
-        <input id="product_discount" name="product_discount" type="number" [(ngModel)]="listing.prod_discount">
+        <input data-cy="listing-discount-input" id="product_discount" name="product_discount" type="number" [(ngModel)]="listing.prod_discount">
     </div>
 
     <div>
         <label for="supplier">
             Supplier:
         </label>
-        <input id="supplier" name="supplier" type="number" [(ngModel)]="listing.supplier">
+        <input data-cy="listing-supplier-input" id="supplier" name="supplier" type="number" [(ngModel)]="listing.supplier">
     </div>
 
     <div>
         <label for="category">
             Category:
         </label>
-        <input id="category" name="category" type="number" [(ngModel)]="listing.category">
+        <input data-cy="listing-category-input" id="category" name="category" type="number" [(ngModel)]="listing.category">
     </div>
 
-    <button type="submit">{{ button_text }}</button>
+    <button data-cy="submit-listing-button" type="submit">{{ button_text }}</button>
 </form>
