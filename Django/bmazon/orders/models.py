@@ -1,6 +1,7 @@
 from django.db import models
-from customers.models import Customer
 from products.models import Product
+from accounts.models import Account
+
 
 # Create your models here.
 class OrderBase(models.Model):
@@ -15,15 +16,16 @@ class OrderBase(models.Model):
         managed = False
         app_label = 'orders'
 
+
 class Order(OrderBase):
     product = models.ForeignKey(Product, related_name='order_prod', on_delete=models.PROTECT)
-    customer = models.ForeignKey(Customer, related_name='order_cust', on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, related_name='order_cust', on_delete=models.CASCADE)
 
     class Meta:
         app_label = 'orders'
 
     def __str__(self):
-        return '{} by {}'.format(self.order_id, self.customer)
+        return '{} by {}'.format(self.order_id)
 
 
 class CurrencyConversion(models.Model):
@@ -36,4 +38,4 @@ class CurrencyConversion(models.Model):
         app_label = 'orders'
 
     def __str__(self):
-        return '{} to {} at {}'.format(self.from_curr,self.to_curr,self.rate)
+        return '{} to {} at {}'.format(self.from_curr, self.to_curr, self.rate)

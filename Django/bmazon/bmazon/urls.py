@@ -16,21 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from rest_framework.urlpatterns import format_suffix_patterns
-from products import views
+from products.views import (
+    ProductListCreate,
+    ProductRetrieveUpdateDestroy,
+    CategoryListCreate,
+    CategoryRetrieveUpdateDestroy,
+    SupplierListCreate,
+    SupplierRetrieveUpdateDestroy,
+)
 
 urlpatterns = [
     path('api/', include([
-        path('products/', views.ProductList.as_view()),
-        path('products/new', views.ProductCreate.as_view()),
+        path('products', ProductListCreate.as_view()),
         path('products/<int:product_id>',
-            views.ProductRetrieveUpdateDestroy.as_view()),
-        path('categories', views.CategoryList.as_view()),
+             ProductRetrieveUpdateDestroy.as_view()),
+        path('categories', CategoryListCreate.as_view()),
         path('categories/<int:cat_id>',
-            views.CategoryRetrieveUpdateDestroy.as_view()),
-        path('suppliers', views.SupplierList.as_view()),
+             CategoryRetrieveUpdateDestroy.as_view()),
+        path('suppliers', SupplierListCreate.as_view()),
         path('suppliers/<int:supplier_id>',
-            views.SupplierRetrieveUpdateDestroy.as_view()),
+             SupplierRetrieveUpdateDestroy.as_view()),
     ])),
+    path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]

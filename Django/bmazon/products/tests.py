@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase
 
 from products.models import Product, Category, Supplier
 
+
 # Create your tests here.
 class ProductCreateTestCase(APITestCase):
     def test_create_product(self):
@@ -25,7 +26,7 @@ class ProductCreateTestCase(APITestCase):
             "supplier": 1,
             "category": 1
         }
-        response = self.client.post('/api/products/new', product_attrs)
+        response = self.client.post('/api/products/', product_attrs)
         if response.status_code != 201:
             print(response.data)
         self.assertEqual(

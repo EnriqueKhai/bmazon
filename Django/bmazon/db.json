@@ -116,26 +116,6 @@
                 "contenttype"
             ],
             [
-                "add_customer",
-                "customers",
-                "customer"
-            ],
-            [
-                "change_customer",
-                "customers",
-                "customer"
-            ],
-            [
-                "delete_customer",
-                "customers",
-                "customer"
-            ],
-            [
-                "view_customer",
-                "customers",
-                "customer"
-            ],
-            [
                 "add_currencyconversion",
                 "orders",
                 "currencyconversion"

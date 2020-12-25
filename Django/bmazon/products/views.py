@@ -1,5 +1,4 @@
 import django_filters
-from django.shortcuts import render
 from .models import Product, Category, Supplier, Stock
 from .serializer import (
     ProductSerializer,
@@ -10,11 +9,10 @@ from .serializer import (
 from rest_framework.exceptions import ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import (
-    ListAPIView,
-    CreateAPIView,
     RetrieveUpdateDestroyAPIView,
     ListCreateAPIView
 )
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
@@ -36,17 +34,14 @@ class ProductsPagination(LimitOffsetPagination):
     max_limit = 100
 
 
-class ProductList(ListAPIView):
+class ProductListCreate(ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
-    filter_fields = ('product_id', )
+    filter_fields = ('product_id',)
     search_fields = ('prod_name', 'prod_desc')
     pagination_class = ProductsPagination
-
-
-class ProductCreate(CreateAPIView):
-    serializer_class = ProductSerializer
 
     def create(self, request, *args, **kwargs):
         try:
@@ -64,6 +59,7 @@ class ProductCreate(CreateAPIView):
 
 
 class ProductRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Product.objects.all()
     lookup_field = 'product_id'
     serializer_class = ProductSerializer
@@ -91,6 +87,7 @@ class ProductRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
                 serializer.save(category_id=request.data['category'])
             if 'supplier' in request.data:
                 serializer.save(supplier_id=request.data['supplier'])
+            serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -100,7 +97,8 @@ class CategoryPagination(LimitOffsetPagination):
     max_limit = 100
 
 
-class CategoryList(ListCreateAPIView):
+class CategoryListCreate(ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
@@ -113,6 +111,7 @@ class CategoryList(ListCreateAPIView):
 
 
 class CategoryRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Category.objects.all()
     lookup_field = 'cat_id'
     serializer_class = CategorySerializer
@@ -129,7 +128,8 @@ class SupplierPagination(LimitOffsetPagination):
     max_limit = 100
 
 
-class SupplierList(ListCreateAPIView):
+class SupplierListCreate(ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
@@ -142,6 +142,7 @@ class SupplierList(ListCreateAPIView):
 
 
 class SupplierRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Supplier.objects.all()
     lookup_field = 'supplier_id'
     serializer_class = SupplierSerializer
