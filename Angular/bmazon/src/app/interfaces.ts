@@ -11,3 +11,19 @@ export interface Product extends Product_base {
     supplier: number,
     category: number
 }
+
+export interface UserRegistrationForm {
+    email: string,
+    first_name: string,
+    last_name: string,
+    address: string,
+    country: string,
+    city: string,
+    postal_code: number,
+    account_type: string,
+    user: {
+        username: string,
+        password: string
+    },
+    password2: string
+}

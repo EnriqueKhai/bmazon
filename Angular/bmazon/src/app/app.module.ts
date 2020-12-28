@@ -13,6 +13,9 @@ import { CreateListingPageComponent } from './create-listing-page/create-listing
 import { EditListingPageComponent } from './edit-listing-page/edit-listing-page.component';
 import { ProductService } from './services/product/product.service';
 import { ListingDataFormComponent } from './listing-data-form/listing-data-form.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { ListingDataFormComponent } from './listing-data-form/listing-data-form.
     CreateListingPageComponent,
     EditListingPageComponent,
     ListingDataFormComponent,
+    SignupPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { ListingDataFormComponent } from './listing-data-form/listing-data-form.
     HttpClientModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

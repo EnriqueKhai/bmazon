@@ -12,10 +12,10 @@ const HTTP_OPTIONS = {
 
 // CRUD URLs.
 const GET_LISTING_DETAIL_URL: string  = "http://localhost:8000/api/products/?product_id=";
-const GET_ALL_LISTINGS_URL: string    = "http://localhost:8000/api/products/";
+const GET_ALL_LISTINGS_URL: string    = "http://localhost:8000/api/products";
 const CREATE_NEW_LISTING_URL: string  = "http://localhost:8000/api/products/new";
-const EDIT_LISTING_DETAIL_URL: string = "http://localhost:8000/api/products/";
-const DELETE_LISTING_URL: string      = "http://localhost:8000/api/products/";
+const EDIT_LISTING_DETAIL_URL: string = "http://localhost:8000/api/products";
+const DELETE_LISTING_URL: string      = "http://localhost:8000/api/products";
 
 @Injectable({
   providedIn: 'root'

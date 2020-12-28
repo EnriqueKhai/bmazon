@@ -123,7 +123,7 @@ describe("[Bmazon UI] User can", () => {
             .and("contain", "1500");
 
         // Delete the newly created listing.
-        cy.get("[data-cy='delete-listing-button']").eq(-1)
+        cy.get("[data-cy='delete-listing-button']").last()
             .click();
 
         // Verify that the newly created listing no longer exists.

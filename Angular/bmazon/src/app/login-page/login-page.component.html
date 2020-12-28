@@ -1,0 +1,20 @@
+<h1>
+    Log In Page!
+</h1>
+<form (ngSubmit)="login()">
+    <div>
+        <label for="username">
+            Username:
+        </label>
+        <input data-cy="login-username" id="username" name="username" type="text" [(ngModel)]="login_credentials.username">
+    </div>
+
+    <div>
+        <label for="password">
+            Password:
+        </label>
+        <input data-cy="login-password" id="password" name="password" type="password" [(ngModel)]="login_credentials.password">
+    </div>
+
+    <button data-cy="login-button" type="submit">Log In</button>
+</form>
